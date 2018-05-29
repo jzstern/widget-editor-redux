@@ -13,7 +13,95 @@ import * as constants from "../constants";
 // 		id: widgetId,
 // 		widgetType: widgetType
 // 	})
-// )
+//
+
+export const linkTextChanged = (dispatch, widgetId, newText) => (
+	dispatch({
+		type: constants.LINK_TEXT_CHANGED,
+		id: widgetId,
+		text: newText
+	})
+)
+
+export const linkNameChanged = (dispatch, widgetId, newName) => (
+	dispatch({
+		type: constants.LINK_NAME_CHANGED,
+		id: widgetId,
+		name: newName
+	})
+)
+
+export const linkUrlChanged = (dispatch, widgetId, newURL) => (
+	dispatch({
+		type: constants.LINK_URL_CHANGED,
+		id: widgetId,
+		url: newURL
+	})
+)
+
+export const imageNameChanged = (dispatch, widgetId, newName) => (
+	dispatch({
+		type: constants.IMAGE_NAME_CHANGED,
+		id: widgetId,
+		name: newName
+	})
+)
+
+export const imageUrlChanged = (dispatch, widgetId, newURL) => (
+	dispatch({
+		type: constants.IMAGE_URL_CHANGED,
+		id: widgetId,
+		url: newURL
+	})
+)
+
+export const listOrderChanged = (dispatch, widgetId, ordered) => (
+	dispatch({
+		type: constants.LIST_ORDER_CHANGED,
+		id: widgetId,
+		ordered: ordered
+	})
+)
+
+export const listNameChanged = (dispatch, widgetId, newName) => (
+	dispatch({
+		type: constants.LIST_NAME_CHANGED,
+		id: widgetId,
+		name: newName
+	})
+)
+
+export const listTextChanged = (dispatch, widgetId, newText) => (
+	dispatch({
+		type: constants.LIST_TEXT_CHANGED,
+		id: widgetId,
+		text: newText
+	})
+)
+
+export const paragraphTextChanged = (dispatch, widgetId, newText) => (
+	dispatch({
+		type: constants.PARAGRAPH_TEXT_CHANGED,
+		id: widgetId,
+		text: newText
+	})
+)
+
+export const paragraphNameChanged = (dispatch, widgetId, newName) => (
+	dispatch({
+		type: constants.PARAGRAPH_NAME_CHANGED,
+		id: widgetId,
+		name: newName
+	})
+)
+
+export const headingNameChanged = (dispatch, widgetId, newName) => (
+	dispatch({
+		type: constants.HEADING_NAME_CHANGED,
+		id: widgetId,
+		name: newName
+	})
+)
 
 export const headingTextChanged = (dispatch, widgetId, newText) => (
 	dispatch({

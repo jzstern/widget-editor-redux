@@ -28,7 +28,9 @@ class WidgetList extends Component {
 					))}
 				</ul>
 
-				<button onClick={this.props.addWidget} className="btn btn-primary" type="button">Add Widget</button>
+				<button onClick={this.props.addWidget} className="btn btn-primary float-right mr-5" type="button">
+					<i className="fa fa-plus"></i>
+				</button>
 			</div>
 		)
 	}

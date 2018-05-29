@@ -4,6 +4,116 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
 	let newState
 	switch (action.type) {
 
+		case constants.LINK_TEXT_CHANGED:
+			return {
+				widgets: state.widgets.map(widget => {
+					if (widget.id === action.id) {
+						widget.text = action.text
+					}
+					return Object.assign({}, widget)
+				})
+			}
+
+		case constants.LINK_NAME_CHANGED:
+			return {
+				widgets: state.widgets.map(widget => {
+					if (widget.id === action.id) {
+						widget.name = action.name
+					}
+					return Object.assign({}, widget)
+				})
+			}
+
+		case constants.LINK_URL_CHANGED:
+			return {
+				widgets: state.widgets.map(widget => {
+					if (widget.id === action.id) {
+						widget.url = action.url
+					}
+					return Object.assign({}, widget)
+				})
+			}
+
+		case constants.IMAGE_NAME_CHANGED:
+			return {
+				widgets: state.widgets.map(widget => {
+					if (widget.id === action.id) {
+						widget.name = action.name
+					}
+					return Object.assign({}, widget)
+				})
+			}
+
+		case constants.IMAGE_URL_CHANGED:
+			return {
+				widgets: state.widgets.map(widget => {
+					if (widget.id === action.id) {
+						widget.url = action.url
+					}
+					return Object.assign({}, widget)
+				})
+			}
+
+		case constants.LIST_ORDER_CHANGED:
+			return {
+				widgets: state.widgets.map(widget => {
+					if (widget.id === action.id) {
+						widget.ordered = action.ordered
+					}
+					return Object.assign({}, widget)
+				})
+			}
+
+		case constants.LIST_NAME_CHANGED:
+			return {
+				widgets: state.widgets.map(widget => {
+					if (widget.id === action.id) {
+						widget.name = action.name
+					}
+					return Object.assign({}, widget)
+				})
+			}
+
+		case constants.LIST_TEXT_CHANGED:
+			return {
+				widgets: state.widgets.map(widget => {
+					if (widget.id === action.id) {
+						widget.text = action.text
+					}
+					return Object.assign({}, widget)
+				})
+			}
+
+		case constants.PARAGRAPH_TEXT_CHANGED:
+			return {
+				widgets: state.widgets.map(widget => {
+					if (widget.id === action.id) {
+						widget.text = action.text
+					}
+					return Object.assign({}, widget)
+				})
+			}
+
+		case constants.PARAGRAPH_NAME_CHANGED:
+			return {
+				widgets: state.widgets.map(widget => {
+					if (widget.id === action.id) {
+						widget.name = action.name
+					}
+					return Object.assign({}, widget)
+				})
+			}
+
+		case constants.HEADING_NAME_CHANGED:
+			return {
+				widgets: state.widgets.map(widget => {
+					if (widget.id === action.id) {
+						widget.name = action.name
+					}
+					return Object.assign({}, widget)
+				})
+			}
+
 		case constants.HEADING_SIZE_CHANGED:
 			return {
 				widgets: state.widgets.map(widget => {
@@ -44,7 +154,13 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
 			return {
 				widgets: [
 					...state.widgets,
-					{id: state.widgets.length + 1, text: 'new widget', widgetType: 'Paragraph', size: 2}
+					{
+						id: state.widgets.length + 1,
+						text: 'New widget',
+						widgetType: 'Heading',
+						size: 1,
+						name: ''
+					}
 				]
 			}
 
