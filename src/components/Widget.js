@@ -35,9 +35,7 @@ const dispatchToPropsMapper = dispatch => ({
 	headingTextChanged: (widgetId, newText) =>
 		actions.headingTextChanged(dispatch, widgetId, newText),
 	headingSizeChanged: (widgetId, newSize) =>
-		actions.headingSizeChanged(dispatch, widgetId, newSize),
-	deleteWidget: (widgetId) =>
-		actions.deleteWidget(dispatch, widgetId)
+		actions.headingSizeChanged(dispatch, widgetId, newSize)
 })
 
 const stateToPropsMapper = state => ({
@@ -99,5 +97,7 @@ const Widget = ({widget, preview, dispatch}) => {
 	)
 }
 
-const WidgetContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Widget)
+const WidgetContainer = connect(state => ({
+	preview: state.preview
+}))(Widget)
 export default WidgetContainer

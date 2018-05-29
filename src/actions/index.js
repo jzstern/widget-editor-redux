@@ -1,11 +1,19 @@
 import * as constants from "../constants";
 
-export const deleteWidget = (dispatch, widgetId) => (
-	dispatch({
-		type: constants.DELETE_WIDGET,
-		id: widgetId
-	})
-)
+// export const deleteWidget = (dispatch, widgetId) => (
+// 	dispatch({
+// 		type: constants.DELETE_WIDGET,
+// 		id: widgetId
+// 	})
+// )
+
+// export const selectWidgetType = (dispatch, widgetId, widgetType) => (
+// 	dispatch({
+// 		type: constants.SELECT_WIDGET_TYPE,
+// 		id: widgetId,
+// 		widgetType: widgetType
+// 	})
+// )
 
 export const headingTextChanged = (dispatch, widgetId, newText) => (
 	dispatch({

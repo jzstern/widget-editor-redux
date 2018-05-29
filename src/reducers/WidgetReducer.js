@@ -5,7 +5,6 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
 	switch (action.type) {
 
 		case constants.HEADING_SIZE_CHANGED:
-			// alert('heading size changed')
 			return {
 				widgets: state.widgets.map(widget => {
 					if (widget.id === action.id) {
