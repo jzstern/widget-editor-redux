@@ -12,12 +12,15 @@ class WidgetList extends Component {
 	render() {
 		return(
 			<div className="container-fluid">
-				<h1>Widget List {this.props.widgets.length}</h1>
+				<h1>Widget List</h1>
 				<button hidden={this.props.previewMode}
 				        onClick={this.props.save}
-				        className="btn btn-success"
+				        className="btn btn-success mr-2"
 				        type="button">Save</button>
 				<button onClick={this.props.preview} className="btn btn-info" type="button">Preview</button>
+
+				<br/>
+				<br/>
 
 				<ul>
 					{this.props.widgets.map(widget => (
