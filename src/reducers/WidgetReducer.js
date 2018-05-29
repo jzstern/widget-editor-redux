@@ -1,8 +1,14 @@
-import * as constants from "../constants";
+import * as constants from "../constants"
 
 export const widgetReducer = (state = {widgets: [], preview: false}, action) => {
 	let newState
 	switch (action.type) {
+
+		case constants.SHIFT_WIDGET_UP:
+			return state.widgets
+
+		case constants.SHIFT_WIDGET_DOWN:
+			return state.widgets
 
 		case constants.LINK_TEXT_CHANGED:
 			return {

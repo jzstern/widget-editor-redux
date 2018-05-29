@@ -66,11 +66,11 @@ const headingDispatchToPropsMapper = dispatch => ({
 		actions.headingNameChanged(dispatch, widgetId, newName)
 })
 
-const headingStateToPropsMapper = state => ({
+const stateToPropsMapper = state => ({
 	preview: state.preview
 })
 
-const HeadingContainer = connect(headingStateToPropsMapper, headingDispatchToPropsMapper)(Heading)
+const HeadingContainer = connect(stateToPropsMapper, headingDispatchToPropsMapper)(Heading)
 
 
 //                                      PARAGRAPH
@@ -114,11 +114,7 @@ const paragraphDispatchToPropsMapper = dispatch => ({
 		actions.paragraphNameChanged(dispatch, widgetId, newName)
 })
 
-const paragraphStateToPropsMapper = state => ({
-	preview: state.preview
-})
-
-const ParagraphContainer = connect(paragraphStateToPropsMapper, paragraphDispatchToPropsMapper)(Paragraph)
+const ParagraphContainer = connect(stateToPropsMapper, paragraphDispatchToPropsMapper)(Paragraph)
 
 // const ParagraphContainer = connect(dispatch => ({
 // 	paragraphTextChange: (widgetId, newText) =>
@@ -168,11 +164,7 @@ const imageDispatchToPropsMapper = dispatch => ({
 		actions.imageNameChanged(dispatch, widgetId, newName)
 })
 
-const imageStateToPropsMapper = state => ({
-	preview: state.preview
-})
-
-const ImageContainer = connect(imageStateToPropsMapper, imageDispatchToPropsMapper)(Image)
+const ImageContainer = connect(stateToPropsMapper, imageDispatchToPropsMapper)(Image)
 
 
 //                                        Link
@@ -231,11 +223,7 @@ const linkDispatchToPropsMapper = dispatch => ({
 		actions.linkNameChanged(dispatch, widgetId, newName)
 })
 
-const linkStateToPropsMapper = state => ({
-	preview: state.preview
-})
-
-const LinkContainer = connect(linkStateToPropsMapper, linkDispatchToPropsMapper)(Link)
+const LinkContainer = connect(stateToPropsMapper, linkDispatchToPropsMapper)(Link)
 
 //                                        LIST
 // -------------------------------------------------------------------------------------------------
@@ -282,6 +270,8 @@ const List = ({widget, preview, listTextChanged, listNameChanged, listOrderChang
 			{/*TODO ; add list rendering functionality - include ol vs ul*/}
 			<div hidden={!preview}>
 				<p>{widget.text}</p>
+				{/*{widget.ordered === true && <ol></ol>}*/}
+				{/*{widget.ordered === false && <ul></ul>}*/}
 			</div>
 			<hr/>
 		</div>
@@ -297,44 +287,44 @@ const listDispatchToPropsMapper = dispatch => ({
 		actions.listOrderChanged(dispatch, widgetId, newOrder)
 })
 
-const listStateToPropsMapper = state => ({
-	preview: state.preview
-})
-
-const ListContainer = connect(listStateToPropsMapper, listDispatchToPropsMapper)(List)
+const ListContainer = connect(stateToPropsMapper, listDispatchToPropsMapper)(List)
 
 
 // -------------------------------------------------------------------------------------------------
 //                                        WIDGET
 // -------------------------------------------------------------------------------------------------
 
-const Widget = ({widget, preview, dispatch}) => {
+const Widget = ({widget, preview, shiftUp, shiftDown, selectWidget, deleteWidget}) => {
 	let selectElement
 
 	return (
 		<li>
-			<div hidden={preview} className="form-row">
-				{/*{widget.id}*/}
-				<h3 className="col-10">{widget.widgetType} Widget</h3>
+			<div hidden={preview} className="form-row panel panel-default">
+				<h3 className="col-sm-9 float-left">{widget.widgetType} Widget</h3>
 
-				<select value={widget.widgetType}
-				        onChange={e => dispatch({
-									type: constants.SELECT_WIDGET_TYPE,
-									id: widget.id,
-									widgetType: selectElement.value})}
-				        ref={node => selectElement = node}
-				        className="float-right col-1">
-					<option>Heading</option>
-					<option>Paragraph</option>
-					<option>List</option>
-					<option>Image</option>
-					<option>Link</option>
-				</select>
+				<div className="form-row float-right">
+					<button onClick={() => shiftUp(widget.id)} className="btn btn-warning ml-2">
+						<i className="fa fa-arrow-up"/>
+					</button>
+					<button onClick={() => shiftDown(widget.id)} className="btn btn-warning ml-2">
+						<i className="fa fa-arrow-down"/>
+					</button>
 
-				<button onClick={e => (dispatch({type: constants.DELETE_WIDGET, id: widget.id}))}
-				className="btn btn-danger float-right ml-2">
-						<i className="fa fa-trash"></i>
-				</button>
+					<select value={widget.widgetType}
+					        onChange={() => selectWidget(widget.id, selectElement.value)}
+					        ref={node => selectElement = node}
+					        className="float-right ml-2">
+						<option>Heading</option>
+						<option>Paragraph</option>
+						<option>List</option>
+						<option>Image</option>
+						<option>Link</option>
+					</select>
+
+					<button onClick={() => deleteWidget(widget.id)} className="btn btn-danger ml-2">
+							<i className="fa fa-trash"/>
+					</button>
+				</div>
 			</div>
 
 			<div>
@@ -349,7 +339,16 @@ const Widget = ({widget, preview, dispatch}) => {
 	)
 }
 
-const WidgetContainer = connect(state => ({
-	preview: state.preview
-}))(Widget)
+const widgetDispatchToPropsMapper = dispatch => ({
+	selectWidget: (widgetId, widgetType) =>
+		actions.selectWidget(dispatch, widgetId, widgetType),
+	deleteWidget: (widgetId) =>
+		actions.deleteWidget(dispatch, widgetId),
+	shiftUp: (widgetId) =>
+		actions.shiftUp(dispatch, widgetId),
+	shiftDown: (widgetId) =>
+		actions.shiftDown(dispatch, widgetId)
+})
+
+const WidgetContainer = connect(stateToPropsMapper, widgetDispatchToPropsMapper)(Widget)
 export default WidgetContainer
