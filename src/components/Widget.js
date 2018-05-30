@@ -299,7 +299,7 @@ const Widget = ({widget, preview, shiftUp, shiftDown, selectWidget, deleteWidget
 	let selectElement
 
 	return (
-		<li>
+		<li className="list-group-item">
 			<div hidden={preview} className="form-row panel panel-default">
 				<h3 className="col-sm-9 float-left">{widget.widgetType} Widget</h3>
 
@@ -345,10 +345,10 @@ const widgetDispatchToPropsMapper = dispatch => ({
 		actions.selectWidget(dispatch, widgetId, widgetType),
 	deleteWidget: (widgetId) =>
 		actions.deleteWidget(dispatch, widgetId),
-	shiftUp: (widgetId) =>
-		actions.shiftUp(dispatch, widgetId),
-	shiftDown: (widgetId) =>
-		actions.shiftDown(dispatch, widgetId)
+	shiftUp: (widgetId, widgetPosition) =>
+		actions.shiftUp(dispatch, widgetId, widgetPosition),
+	shiftDown: (widgetId, widgetPosition) =>
+		actions.shiftDown(dispatch, widgetId, widgetPosition)
 })
 
 const WidgetContainer = connect(stateToPropsMapper, widgetDispatchToPropsMapper)(Widget)

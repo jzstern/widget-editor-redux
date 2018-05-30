@@ -4,29 +4,9 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
 	let newState
 	switch (action.type) {
 
-		// case constants.ORDER_WIDGETS:
-		// 	let ordered
-		// 	let index = 0
-		//
-		// 	while (state.widgets.length !== 0) {
-		// 		for (let widget of state.widgets) {
-		// 			if (widget.position === index) {
-		// 				// ordered.add(Object.assign({}, widget))
-		// 				ordered.add(widget)
-		// 				let i = state.widgets.indexOf(widget);
-		// 				state.widgets.splice(i, 1)
-		// 				index += 1
-		// 			}
-		// 		}
-		// 	}
-		//
-		// 	console.log(ordered)
-		// 	return ordered
-
 		case constants.SHIFT_WIDGET_UP:
 			let originalOrder = state.widgets
 			let position = action.position
-			// is it possible to pass other widget properties like position?
 
 			return state.widgets
 
@@ -163,9 +143,16 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
 				})
 			}
 
+		// found sort from https://stackoverflow.com/questions/12915445/sorting-a-json-list
 		case constants.FIND_ALL_WIDGETS:
 			newState = Object.assign({}, state)
-			newState.widgets = action.widgets
+			let widgets = action.widgets
+
+			widgets.sort(function(w1, w2) {
+				return (+w1.position || 0) - (+w2.position || 0)
+			})
+
+			newState.widgets = widgets
 			return newState
 
 		case constants.SELECT_WIDGET_TYPE:

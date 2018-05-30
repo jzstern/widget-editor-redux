@@ -1,13 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import * as actions from "../actions/index";
+import * as actions from "../actions/index"
 import WidgetContainer from '../components/Widget'
 
 class WidgetList extends Component {
 	constructor(props) {
 		super(props)
 		this.props.findAllWidgets()
-		this.props.orderWidgets()
 	}
 
 	render() {
@@ -23,7 +22,7 @@ class WidgetList extends Component {
 				<br/>
 				<br/>
 
-				<ul>
+				<ul className="list-group list-group-flush">
 					{this.props.widgets.map(widget => (
 						<WidgetContainer widget={widget} key={widget.id} preview={this.props.previewMode}/>
 					))}
@@ -47,7 +46,6 @@ const dispatchToPropsMapper = dispatch => ({
 	addWidget: () => actions.addWidget(dispatch),
 	save: () => actions.save(dispatch),
 	preview: () => actions.preview(dispatch)
-	// orderWidgets: () => actions.orderWidgets(dispatch)
 })
 
 export const App = connect(stateToPropertiesMapper, dispatchToPropsMapper)(WidgetList)
