@@ -4,7 +4,30 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
 	let newState
 	switch (action.type) {
 
+		// case constants.ORDER_WIDGETS:
+		// 	let ordered
+		// 	let index = 0
+		//
+		// 	while (state.widgets.length !== 0) {
+		// 		for (let widget of state.widgets) {
+		// 			if (widget.position === index) {
+		// 				// ordered.add(Object.assign({}, widget))
+		// 				ordered.add(widget)
+		// 				let i = state.widgets.indexOf(widget);
+		// 				state.widgets.splice(i, 1)
+		// 				index += 1
+		// 			}
+		// 		}
+		// 	}
+		//
+		// 	console.log(ordered)
+		// 	return ordered
+
 		case constants.SHIFT_WIDGET_UP:
+			let originalOrder = state.widgets
+			let position = action.position
+			// is it possible to pass other widget properties like position?
+
 			return state.widgets
 
 		case constants.SHIFT_WIDGET_DOWN:
@@ -165,7 +188,8 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
 						text: 'New widget',
 						widgetType: 'Heading',
 						size: 1,
-						name: ''
+						name: '',
+						position: state.widgets.length
 					}
 				]
 			}

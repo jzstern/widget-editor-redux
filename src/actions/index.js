@@ -1,5 +1,11 @@
 import * as constants from "../constants";
 
+// export const orderWidgets = (dispatch) => (
+// 	dispatch({
+// 		type: constants.ORDER_WIDGETS
+// 	})
+// )
+
 export const shiftUp = (dispatch, widgetId) => (
 	dispatch({
 		type: constants.SHIFT_WIDGET_UP,

@@ -7,6 +7,7 @@ class WidgetList extends Component {
 	constructor(props) {
 		super(props)
 		this.props.findAllWidgets()
+		this.props.orderWidgets()
 	}
 
 	render() {
@@ -46,6 +47,7 @@ const dispatchToPropsMapper = dispatch => ({
 	addWidget: () => actions.addWidget(dispatch),
 	save: () => actions.save(dispatch),
 	preview: () => actions.preview(dispatch)
+	// orderWidgets: () => actions.orderWidgets(dispatch)
 })
 
 export const App = connect(stateToPropertiesMapper, dispatchToPropsMapper)(WidgetList)

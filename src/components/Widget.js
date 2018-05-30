@@ -90,6 +90,7 @@ const Paragraph = ({widget, preview, paragraphTextChanged, paragraphNameChanged}
 				          id="paragraphInput"
 				          value={widget.text}/>
 				{/*is this acceptable for any tag??^*/}
+				<br/>
 				<label htmlFor="widgetName">Widget Name</label>
 				<input onChange={() => paragraphNameChanged(widget.id, nameElement.value)}
 					ref={node => nameElement = node}
@@ -303,10 +304,10 @@ const Widget = ({widget, preview, shiftUp, shiftDown, selectWidget, deleteWidget
 				<h3 className="col-sm-9 float-left">{widget.widgetType} Widget</h3>
 
 				<div className="form-row float-right">
-					<button onClick={() => shiftUp(widget.id)} className="btn btn-warning ml-2">
+					<button onClick={() => shiftUp(widget.id, widget.position)} className="btn btn-warning ml-2">
 						<i className="fa fa-arrow-up"/>
 					</button>
-					<button onClick={() => shiftDown(widget.id)} className="btn btn-warning ml-2">
+					<button onClick={() => shiftDown(widget.id, widget.position)} className="btn btn-warning ml-2">
 						<i className="fa fa-arrow-down"/>
 					</button>
 
