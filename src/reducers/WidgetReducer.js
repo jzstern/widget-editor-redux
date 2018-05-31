@@ -1,17 +1,57 @@
+import React from 'react'
 import * as constants from "../constants"
 
 export const widgetReducer = (state = {widgets: [], preview: false}, action) => {
-	let newState
+	let newState, fixed
+	let widgetList = state.widgets
+	let position = action.position
+
 	switch (action.type) {
 
-		case constants.SHIFT_WIDGET_UP:
-			let originalOrder = state.widgets
-			let position = action.position
+		case constants.POPULATE_LIST:
+			let textList = action.listText.split("/n")
 
-			return state.widgets
+			if (action.ordered) {
+				return (
+					<ol className="list-group">
+						{textList.map(listItem => (<li className="list-group-item">listItem</li>))}
+					</ol>
+				)
+			} else {
+				return (
+					<ul className="list-group">
+						{textList.map(listItem => (<li className="list-group-item">listItem</li>))}
+					</ul>
+				)
+			}
+
+		case constants.SHIFT_WIDGET_UP:
+			fixed = widgetList.map(widget => {
+				if (position !== 0) {
+					if (widget.position === position) {
+						widget.position -= 1
+					} else if (widget.position === position - 1) {
+						widget.position += 1
+					}
+				}
+				return Object.assign({}, widget);
+			})
+
+			return fixed
 
 		case constants.SHIFT_WIDGET_DOWN:
-			return state.widgets
+			fixed = widgetList.map(widget => {
+				if (position !== widgetList.length + 1) {
+					if (widget.position === position) {
+						widget.position += 1
+					} else if (widget.position === position + 1) {
+						widget.position -= 1
+					}
+				}
+				return Object.assign({}, widget);
+			})
+
+			return fixed
 
 		case constants.LINK_TEXT_CHANGED:
 			return {
@@ -156,7 +196,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
 			return newState
 
 		case constants.SELECT_WIDGET_TYPE:
-			let newState = {
+			newState = {
 				widgets: state.widgets.filter(widget => {
 					if (widget.id === action.id) {
 						widget.widgetType = action.widgetType

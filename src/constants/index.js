@@ -1,6 +1,7 @@
 export const SAVE = 'SAVE'
 export const PREVIEW = 'PREVIEW'
 export const ADD_WIDGET = 'ADD_WIDGET'
+export const POPULATE_LIST = 'POPULATE_LIST'
 export const DELETE_WIDGET = 'DELETE_WIDGET'
 export const SHIFT_WIDGET_UP = 'SHIFT_WIDGET_UP'
 export const SHIFT_WIDGET_DOWN = 'SHIFT_WIDGET_DOWN'

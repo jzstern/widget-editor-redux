@@ -268,11 +268,9 @@ const List = ({widget, preview, listTextChanged, listNameChanged, listOrderChang
 				       id="widgetName"
 				       placeholder="e.g. List Widget"/>
 			</div>
-			{/*TODO ; add list rendering functionality - include ol vs ul*/}
 			<div hidden={!preview}>
-				<p>{widget.text}</p>
-				{/*{widget.ordered === true && <ol></ol>}*/}
-				{/*{widget.ordered === false && <ul></ul>}*/}
+				{this.populateList(widget.text, widget.ordered)}
+				{/*<p>{widget.text}</p>*/}
 			</div>
 			<hr/>
 		</div>
@@ -285,7 +283,9 @@ const listDispatchToPropsMapper = dispatch => ({
 	listNameChanged: (widgetId, newName) =>
 		actions.listNameChanged(dispatch, widgetId, newName),
 	listOrderChanged: (widgetId, newOrder) =>
-		actions.listOrderChanged(dispatch, widgetId, newOrder)
+		actions.listOrderChanged(dispatch, widgetId, newOrder),
+	populateList: (listText, ordered) =>
+		actions.populateList(dispatch, listText, ordered)
 })
 
 const ListContainer = connect(stateToPropsMapper, listDispatchToPropsMapper)(List)

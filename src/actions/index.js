@@ -1,16 +1,26 @@
 import * as constants from "../constants"
 
-export const shiftUp = (dispatch, widgetId) => (
+export const populateList = (dispatch, listText, ordered) => (
 	dispatch({
-		type: constants.SHIFT_WIDGET_UP,
-		id: widgetId
+		type: constants.POPULATE_LIST,
+		listText: listText,
+		ordered: ordered
 	})
 )
 
-export const shiftDown = (dispatch, widgetId) => (
+export const shiftUp = (dispatch, widgetId, position) => (
+	dispatch({
+		type: constants.SHIFT_WIDGET_UP,
+		id: widgetId,
+		position: position,
+	})
+)
+
+export const shiftDown = (dispatch, widgetId, position) => (
 	dispatch({
 		type: constants.SHIFT_WIDGET_DOWN,
-		id: widgetId
+		id: widgetId,
+		position: position
 	})
 )
 
