@@ -2,7 +2,6 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../../node_modules/font-awesome/css/font-awesome.css'
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import * as constants from '../constants'
 import * as actions from '../actions'
 
 //                                      HEADING
@@ -14,8 +13,8 @@ const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, headi
 
 	return (
 		<div className="container-fluid">
-			<div hidden={preview}>
-			{/*<div>*/}
+			{/*<div hidden={preview}>*/}
+			<div>
 				<label htmlFor="headingText">Text</label>
 				<input onChange={() => headingTextChanged(widget.id, textElement.value)}
 				       value={widget.text}
@@ -81,7 +80,8 @@ const Paragraph = ({widget, preview, paragraphTextChanged, paragraphNameChanged}
 
 	return (
 		<div className="container-fluid">
-			<div hidden={preview}>
+			{/*<div hidden={preview}>*/}
+			<div>
 				<label htmlFor="paragraphInput">Text</label>
 				<textarea onChange={() => paragraphTextChanged(widget.id, textElement.value)}
 				          ref={node => textElement = node}
@@ -131,7 +131,8 @@ const Image = ({widget, preview, imageUrlChanged, imageNameChanged}) => {
 
 	return (
 		<div className="container-fluid">
-			<div hidden={preview}>
+			{/*<div hidden={preview}>*/}
+			<div>
 				<label htmlFor="imageUrl">Image URL</label>
 				<input onChange={() => imageUrlChanged(widget.id, urlElement.value)}
 				       ref={node => urlElement = node}
@@ -178,7 +179,8 @@ const Link = ({widget, preview, linkUrlChanged, linkTextChanged, linkNameChanged
 
 	return (
 		<div className="container-fluid">
-			<div hidden={preview}>
+			{/*<div hidden={preview}>*/}
+			<div>
 				<label htmlFor="linkUrl">Link URL</label>
 				<input onChange={() => linkUrlChanged(widget.id, urlElement.value)}
 				       ref={node => urlElement = node}
@@ -236,7 +238,8 @@ const List = ({widget, preview, listTextChanged, listNameChanged, listOrderChang
 
 	return (
 		<div className="container-fluid">
-			<div hidden={preview}>
+			{/*<div hidden={preview}>*/}
+			<div>
 				<h2>List</h2>
 
 				<label htmlFor="listText">Text</label>
@@ -269,8 +272,14 @@ const List = ({widget, preview, listTextChanged, listNameChanged, listOrderChang
 				       placeholder="e.g. List Widget"/>
 			</div>
 			<div hidden={!preview}>
-				{this.populateList(widget.text, widget.ordered)}
+				{/*{this.populateList(widget.text, widget.ordered)}*/}
 				{/*<p>{widget.text}</p>*/}
+				<ol hidden={widget.ordered === false || widget.text.split("\n") <= 1}>
+					{widget.text.split("\n").map(listItem => (<li key={listItem}>{listItem}</li>))}
+				</ol>
+				<ul hidden={widget.ordered === true || widget.text.split("\n") <= 1}>
+					{widget.text.split("\n").map(listItem => (<li key={listItem}>{listItem}</li>))}
+				</ul>
 			</div>
 			<hr/>
 		</div>
@@ -283,9 +292,9 @@ const listDispatchToPropsMapper = dispatch => ({
 	listNameChanged: (widgetId, newName) =>
 		actions.listNameChanged(dispatch, widgetId, newName),
 	listOrderChanged: (widgetId, newOrder) =>
-		actions.listOrderChanged(dispatch, widgetId, newOrder),
-	populateList: (listText, ordered) =>
-		actions.populateList(dispatch, listText, ordered)
+		actions.listOrderChanged(dispatch, widgetId, newOrder)
+	// populateList: (listText, ordered) =>
+	// 	actions.populateList(dispatch, listText, ordered)
 })
 
 const ListContainer = connect(stateToPropsMapper, listDispatchToPropsMapper)(List)
@@ -300,7 +309,8 @@ const Widget = ({widget, preview, shiftUp, shiftDown, selectWidget, deleteWidget
 
 	return (
 		<li className="list-group-item">
-			<div hidden={preview} className="form-row panel panel-default">
+			{/*<div hidden={preview} className="form-row panel panel-default">*/}
+			<div className="form-row panel panel-default">
 				<h3 className="col-sm-9 float-left">{widget.widgetType} Widget</h3>
 
 				<div className="form-row float-right">

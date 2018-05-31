@@ -1,12 +1,12 @@
 import * as constants from "../constants"
 
-export const populateList = (dispatch, listText, ordered) => (
-	dispatch({
-		type: constants.POPULATE_LIST,
-		listText: listText,
-		ordered: ordered
-	})
-)
+// export const populateList = (dispatch, listText, ordered) => (
+// 	dispatch({
+// 		type: constants.POPULATE_LIST,
+// 		listText: listText,
+// 		ordered: ordered
+// 	})
+// )
 
 export const shiftUp = (dispatch, widgetId, position) => (
 	dispatch({

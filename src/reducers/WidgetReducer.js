@@ -8,22 +8,22 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
 
 	switch (action.type) {
 
-		case constants.POPULATE_LIST:
-			let textList = action.listText.split("/n")
-
-			if (action.ordered) {
-				return (
-					<ol className="list-group">
-						{textList.map(listItem => (<li className="list-group-item">listItem</li>))}
-					</ol>
-				)
-			} else {
-				return (
-					<ul className="list-group">
-						{textList.map(listItem => (<li className="list-group-item">listItem</li>))}
-					</ul>
-				)
-			}
+		// case constants.POPULATE_LIST:
+		// 	let textList = action.listText.split("/n")
+		//
+		// 	if (action.ordered) {
+		// 		return (
+		// 			<ol className="list-group">
+		// 				{textList.map(listItem => (<li className="list-group-item">listItem</li>))}
+		// 			</ol>
+		// 		)
+		// 	} else {
+		// 		return (
+		// 			<ul className="list-group">
+		// 				{textList.map(listItem => (<li className="list-group-item">listItem</li>))}
+		// 			</ul>
+		// 		)
+		// 	}
 
 		case constants.SHIFT_WIDGET_UP:
 			fixed = widgetList.map(widget => {
