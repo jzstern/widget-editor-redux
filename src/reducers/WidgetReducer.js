@@ -37,8 +37,9 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
 				return Object.assign({}, widget);
 			})
 
-			console.log(fixed)
-			return fixed
+			return {
+				widgets: fixed
+			}
 
 		case constants.SHIFT_WIDGET_DOWN:
 			fixed = widgetList.map(widget => {
@@ -52,8 +53,9 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
 				return Object.assign({}, widget);
 			})
 
-			console.log(fixed)
-			return fixed
+			return {
+				widgets: fixed
+			}
 
 		case constants.LINK_TEXT_CHANGED:
 			return {
